@@ -7,12 +7,16 @@ export const productContext = React.createContext()
 const INIT_STATE = {
     products: [],
     edit: null,
+    paginatedPages: 1
 }
 
 const reducer = (state = INIT_STATE, action) =>{
     switch(action.type){
         case "GET_PRODUCTS": 
-            return {...state, products: action.payload};
+            return {
+                ...state, products: action.payload.data,
+                paginatedPages: Math.ceil(action.payload.headers["x-total-count"] / 6)
+            };
         case "GET_EDIT_PRODUCT": 
             return {...state, edit: action.payload}
         default: return state
@@ -22,8 +26,11 @@ const reducer = (state = INIT_STATE, action) =>{
 const ProductContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE)
 
-    const getProducts = async () => {
-        let {data} = await axios(`${API}/products`)
+    const getProducts = async (history) => {
+        const search = new URLSearchParams(history.location.search)
+        search.set('_limit', 6)
+        history.push(`${history.location.pathname}?${search.toString()}`)
+        let data = await axios(`${API}/products${window.location.search}`)
         dispatch({
             type: "GET_PRODUCTS",
             payload: data
@@ -69,6 +76,7 @@ const ProductContextProvider = ({children}) => {
          <productContext.Provider value={{
              products: state.products,
              edit: state.edit,
+             paginatedPages: state.paginatedPages,
              getProducts,
              addProduct,
              deleteProduct,
