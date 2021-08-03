@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,8 +9,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import { Link, useHistory } from 'react-router-dom';  
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { useState } from 'react';
+import { productContext } from '../../contexts/ProductsContext';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -80,6 +83,23 @@ export default function Navbar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const history = useHistory()
+  const [searchVal, setSearchVal] = useState(getSearchVal() || '')
+  const {getProducts} = useContext(productContext);
+ 
+  function getSearchVal() {
+    const search = new URLSearchParams(history.location.search)
+    return search.get('q')
+  }
+
+  const handleValue = (e) => {
+    const search = new URLSearchParams(history.location.search)
+    search.set('q', e.target.value)
+    history.push(`${history.location.pathname}?${search.toString()}`)
+    setSearchVal(e.target.value)
+    getProducts(history)
+  }
+
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -168,6 +188,8 @@ export default function Navbar() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              value={searchVal}
+              onChange={handleValue}
             />
           </div>
           <div className={classes.grow} />

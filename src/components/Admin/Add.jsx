@@ -1,5 +1,6 @@
 import { IconButton, Paper, makeStyles, TextField, Button } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { productContext } from '../../contexts/ProductsContext';
 
 const useStyles = makeStyles(theme => ({
@@ -19,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 const Add = () => {
     const classes = useStyles()
+    let history = useHistory()
     const [values, setValues] = useState({
         title: '',
         image: '',
@@ -40,6 +42,7 @@ const Add = () => {
     const handleSave = () => {
         if(!values.image) values.image = "https://content.onliner.by/news/1100x5616/472baa6904f365c4bae96d6b77c13010.jpeg"
         addProduct(values)
+        history.push('/')
     }
     return (
         <Paper elevation={3} className={classes.paper}>

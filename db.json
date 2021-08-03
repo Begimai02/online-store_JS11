@@ -71,6 +71,30 @@
       "type": "test",
       "description": "sfsdfsdf",
       "id": 9
+    },
+    {
+      "title": "tilek",
+      "image": "https://content.onliner.by/news/1100x5616/472baa6904f365c4bae96d6b77c13010.jpeg",
+      "price": "2",
+      "type": "qwe",
+      "description": "qwe",
+      "id": 10
+    },
+    {
+      "title": "tilek",
+      "image": "https://content.onliner.by/news/1100x5616/472baa6904f365c4bae96d6b77c13010.jpeg",
+      "price": "2",
+      "type": "qwe",
+      "description": "qwe",
+      "id": 11
+    },
+    {
+      "title": "js11",
+      "image": "https://content.onliner.by/news/1100x5616/472baa6904f365c4bae96d6b77c13010.jpeg",
+      "price": "121",
+      "type": "phone",
+      "description": "",
+      "id": 12
     }
   ]
 }
