@@ -1,0 +1,76 @@
+{
+  "products": [
+    {
+      "title": "Iphone 12",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "type": "iphone",
+      "image": "https://media.wired.com/photos/5e9f56f143e5800008514457/1:1/w_1277,h_1277,c_limit/Gear-Feature-Apple_new-iphone-se-white_04152020.jpg",
+      "price": "123",
+      "id": 1
+    },
+    {
+      "title": "Iphone X",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "type": "iphone",
+      "image": "https://media.wired.com/photos/5e9f56f143e5800008514457/1:1/w_1277,h_1277,c_limit/Gear-Feature-Apple_new-iphone-se-white_04152020.jpg",
+      "price": "111",
+      "id": 2
+    },
+    {
+      "title": "Iphone 11",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "type": "iphone",
+      "image": "https://media.wired.com/photos/5e9f56f143e5800008514457/1:1/w_1277,h_1277,c_limit/Gear-Feature-Apple_new-iphone-se-white_04152020.jpg",
+      "price": "123",
+      "id": 3
+    },
+    {
+      "title": "Iphone XS",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "type": "iphone",
+      "image": "https://media.wired.com/photos/5e9f56f143e5800008514457/1:1/w_1277,h_1277,c_limit/Gear-Feature-Apple_new-iphone-se-white_04152020.jpg",
+      "price": "111",
+      "id": 4
+    },
+    {
+      "title": "Samsung galaxy A60",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "type": "samsung",
+      "image": "https://www.gizmochina.com/wp-content/uploads/2019/06/Galaxy-A60-featured.jpg",
+      "price": "111",
+      "id": 5
+    },
+    {
+      "title": "Samsung galaxy S10",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "type": "samsung",
+      "image": "https://www.gizmochina.com/wp-content/uploads/2019/06/Galaxy-A60-featured.jpg",
+      "price": "111",
+      "id": 6
+    },
+    {
+      "title": "Samsung galaxy A100",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "type": "samsung",
+      "image": "https://www.gizmochina.com/wp-content/uploads/2019/06/Galaxy-A60-featured.jpg",
+      "price": "111",
+      "id": 7
+    },
+    {
+      "title": "Samsung galaxy S9",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "type": "samsung",
+      "image": "https://www.gizmochina.com/wp-content/uploads/2019/06/Galaxy-A60-featured.jpg",
+      "price": "111",
+      "id": 8
+    },
+    {
+      "title": "test12312312312",
+      "image": "https://images.unsplash.com/photo-1612151855475-877969f4a6cc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGQlMjBpbWFnZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+      "price": "1111",
+      "type": "test",
+      "description": "sfsdfsdf",
+      "id": 9
+    }
+  ]
+}
