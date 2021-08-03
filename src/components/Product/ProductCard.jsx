@@ -67,20 +67,22 @@ export default function ProductCard({item, history}) {
 
   return (
     <Card className={classes.root}>
-      <CardHeader
-        title={item.title}
-        subheader={item.type}
-      />
-      <CardMedia
-        className={classes.media}
-        image={item.image}
-        title="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {item.description}
-        </Typography>
-      </CardContent>
+      <Link to={`/detail/${item.id}`} style={{textDecoration:'none', color: 'black'}}>
+        <CardHeader
+          title={item.title}
+          subheader={item.type}
+        />
+        <CardMedia
+          className={classes.media}
+          image={item.image}
+          title="Paella dish"
+        />
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {item.description}
+          </Typography>
+        </CardContent>
+      </Link>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {item.price}

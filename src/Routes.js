@@ -4,6 +4,7 @@ import Add from './components/Admin/Add';
 import Edit from './components/Admin/Edit';
 import Navbar from './components/Header/Navbar';
 import Home from './components/Home/Home';
+import ProductDetail from './components/Product/ProductDetail';
 import ProductContextProvider from './contexts/ProductsContext';
 
 const Routes = () => {
@@ -15,6 +16,8 @@ const Routes = () => {
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/add" component={Add} />
                     <Route exact path="/edit/:id" component={Edit} />
+                    <Route exact path="/detail/:id" component={ProductDetail} />
+                    
                 </Switch>
             </BrowserRouter>
         </ProductContextProvider>
