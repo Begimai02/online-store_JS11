@@ -12,8 +12,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Link, useHistory } from 'react-router-dom';  
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useState } from 'react';
 import { productContext } from '../../contexts/ProductsContext';
+import { Badge } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -85,7 +87,8 @@ export default function Navbar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const history = useHistory()
   const [searchVal, setSearchVal] = useState(getSearchVal() || '')
-  const {getProducts} = useContext(productContext);
+  const {getProducts, cartLength, getCartLength} = useContext(productContext);
+
  
   function getSearchVal() {
     const search = new URLSearchParams(history.location.search)
@@ -192,6 +195,13 @@ export default function Navbar() {
               onChange={handleValue}
             />
           </div>
+          <Link to="/cart" style={{color: "white"}} >
+              <IconButton color="inherit">
+                <Badge badgeContent={cartLength} color="secondary">
+                  <ShoppingCartIcon/>
+                </Badge>
+              </IconButton>
+          </Link>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton

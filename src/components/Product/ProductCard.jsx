@@ -19,6 +19,8 @@ import { Link } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { productContext } from '../../contexts/ProductsContext';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
 
 
 
@@ -47,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProductCard({item, history}) {
   const classes = useStyles();
-  const {deleteProduct} = useContext(productContext)
+  const {deleteProduct, addProductInCart, checkProductInCart} = useContext(productContext)
 
 
 
@@ -62,6 +64,13 @@ export default function ProductCard({item, history}) {
           <DeleteIcon />
       </IconButton>
 
+      <IconButton 
+        aria-label="share"
+        onClick={() => addProductInCart(item)}
+        color={checkProductInCart(item.id) ? "secondary" : "inherit"}
+        >
+          <ShoppingCartIcon />
+      </IconButton>
     </CardActions>
   )
 

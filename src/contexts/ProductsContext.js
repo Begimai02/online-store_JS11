@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React,  { useReducer } from 'react'
+import { calcSubPrice, calcTotalPrice } from '../helpers/calcPrice'
 import {API} from '../helpers/constants'
 
 export const productContext = React.createContext()
@@ -8,7 +9,9 @@ const INIT_STATE = {
     products: [],
     edit: null,
     paginatedPages: 1,
-    detail: {}
+    detail: {},
+    cart: {},
+    cartLength: 0
 }
 
 const reducer = (state = INIT_STATE, action) =>{
@@ -22,6 +25,10 @@ const reducer = (state = INIT_STATE, action) =>{
             return {...state, edit: action.payload}
         case "GET_DETAIL_PRODUCT": 
             return {...state, detail: action.payload}
+        case "CHANGE_CART_COUNT": 
+            return {...state, cartLength: action.payload}
+        case "GET_CART": 
+            return {...state, cart: action.payload}
         default: return state
     }
 }
@@ -82,6 +89,90 @@ const ProductContextProvider = ({children}) => {
         })
     }
 
+    const addProductInCart = (product) => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if(!cart){
+            cart = {
+                products: [],
+                totalPrice: 0
+            }
+        }
+
+        let newProduct = {
+            item: product,
+            count: 1,
+            subPrice: 0
+        }
+
+        let filteredCart = cart.products.filter(elem => elem.item.id === product.id)
+        if(filteredCart.length > 0) {
+            cart.products = cart.products.filter(elem => elem.item.id !== product.id)
+        }else {
+            cart.products.push(newProduct)
+        }
+        newProduct.subPrice = calcSubPrice(newProduct)
+        cart.totalPrice= calcTotalPrice(cart.products)
+        localStorage.setItem('cart', JSON.stringify(cart))
+        dispatch({
+            type: "CHANGE_CART_COUNT",
+            payload: cart.products.length
+        })
+    }
+
+    const getCartLength = () =>{
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if(!cart){
+            cart = {
+                products: [],
+                totalPrice: 0
+            }
+        }
+        dispatch({
+            type: "CHANGE_CART_COUNT",
+            payload: cart.products.length
+        })
+    }
+
+    const getCart = () => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if(!cart){
+            cart = {
+                products: [],
+                totalPrice: 0
+            }
+        }
+        dispatch({
+            type: "GET_CART",
+            payload: cart
+        })
+    }
+
+    const changeProductCount = (count, id) => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        cart.products = cart.products.map(elem =>{
+            if(elem.item.id === id){
+                elem.count = count
+                elem.subPrice = calcSubPrice(elem)
+            }
+            return elem
+        })
+        cart.totalPrice = calcTotalPrice(cart.products)
+        localStorage.setItem('cart', JSON.stringify(cart))
+        getCart()
+    }
+
+    const checkProductInCart = (id) => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if(!cart) {
+            cart = {
+                products: [],
+                totalPrice: 0
+            }
+        }
+        let newCart = cart.products.filter(elem => elem.item.id === id)
+        return newCart.length > 0 ? true : false
+    }
+
 
      return (
          <productContext.Provider value={{
@@ -89,12 +180,19 @@ const ProductContextProvider = ({children}) => {
              edit: state.edit,
              paginatedPages: state.paginatedPages,
              detail: state.detail,
+             cart: state.cart,
+             cartLength: state.cartLength,
              getProducts,
              addProduct,
              deleteProduct,
              editProduct,
              saveEditProduct,
-             getDetail
+             getDetail,
+             getCart,
+             addProductInCart,
+             changeProductCount,
+             checkProductInCart,
+             getCartLength
          }}>
              {children}
          </productContext.Provider>
